@@ -1,0 +1,595 @@
+
+*****************************************************************************************************************************************
+https://www.youtube.com/watch?v=zJ6WbK9zFpI
+
+https://docs.docker.com/engine/install/ubuntu/
+
+https://hub.docker.com
+
+gitlab.com/classpath-docker/docker-lap
+
+commands
+
+Run - start a container
+ docker run nginx
+ps - list contianers
+ docker ps
+STOP stop a container
+
+ docker ps
+ docker stop <name>
+ docker ps -a
+ 
+RM remove a container
+ docker rm <name>
+ docker ps -a
+
+images - lists images
+ docker images
+
+rmi remove images
+	docker rmi nginx
+
+pull download an images
+
+	docker run nginx
+	docker pull nginx
+
+
+docker run ubuntu
+docker ps
+docker ps -a
+
+Exec - execute a commands
+docker ps -a
+
+docker exec <name>
+ 
+ 
+COPY copies a file/directory from your host to your image.
+ADD copies a file/directory from your host to your image, but can also fetch remote URLs, extract TAR files, etc...
+Use COPY for simply copying files and/or directories into the build context.
+Use ADD for downloading remote resources, extracting TAR files, etc..
+
+
+ Please access the labs here: https://kodekloud.com/p/docker-labs
+*****************************************************************************************************************************************
+ 
+ 
+export DOCKER_API_VERSION=1.25
+export DOCKER_HOST=x18tcldvch02a.dev.cloudnow.dbs.com:2375
+
+unset DOCKER_API_VERSION
+unset DOCKER_HOST
+
+
+
+
+-- to run the nexus image
+docker run -it --name=sjboss1 --net=host nexuscimgmt.sgp.dbs.com:8088/ibgm/sc_vic_ibgm/rhel-jboss71:8
+
+
+-- to run the vic image
+docker run -it -p 8080:8080 -p 8443:8443 -p 9990:9990 -p 9993:9993 --net=tsxcld01 --name=jbosstest1 x18svicapp02a.dev.cloudnow.dbs.com/library/jboss-eap-72:1.2-12.1580215318 /bin/bash
+
+
+-- to run the local images
+docker run x18svicapp01a.dev.cloudnow.dbs.com/library/jboss-eap-72:1.2-12.1580215318
+docker run -it -p 80:8080 -p 83:8443 -p 93:9993 -p 90:9990 --name=fprojboss1 --net=tsxcld01  x18svicapp02a.dev.cloudnow.dbs.com/ibg-fpro-01/jboss72:1.1 /bin/bash
+
+docker run -it -p 80:8080 -p 83:8443 -p 93:9993 -p 90:9990 --name=sjboss1 x18svicapp02a.dev.cloudnow.dbs.com/ibg-fpro-01/jboss72:1.1 /bin/bash
+
+
+-- copying files from and to container
+docker cp /home/gopikiran/working_container.xml rejboss1:/opt/eap/standalone/configuration/standalone.xml
+ docker cp /home/gopikiran/fproreapp.uat.dbs.com.jks rejboss1:/opt/eap
+
+x18svicapp02a.dev.cloudnow.dbs.com/ibg-fpro-01/jboss-eap-72:1.1
+
+
+-- to pull and push from the repo
+docker pull nexuscimgmt.sgp.dbs.com:8088/ibgm/sc_vic_ibgm/rhel-jboss72:8
+docker tag nexuscimgmt.sgp.dbs.com:8088/ibgm/sc_vic_ibgm/rhel-jboss72:8 x18svicapp02a.dev.cloudnow.dbs.com/ibg-fpro-01/jboss72:1.1
+docker push x18svicapp02a.dev.cloudnow.dbs.com/ibg-fpro-01/jboss72:1.1
+
+*****************************************************************************************************************************************
+My part
+
+https://confluence.sgp.dbs.com:8443/dcifcnfl/display/IIPAA/POC+Setup+OnBoarding
+
+getent group  -> list of all groups
+getent group dockerroot -> specific to dockerroot
+getnet group root -> specific to root.
+
+group userid --> the userid is belongs to which group id
+group krishnagganddu -> 
+
+
+1) VIC Project creation 
+2) EASRE team create JIRA,jenkins,bitbucket.(build,jenkins, zip file, upload nexus) - not required now.
+3) Docker files configuration(war, shells, resource).
+4) 
+
+when we deploy and new container will created.
+
+
+TS/VIC team will provide the following
+VIC Docker Registry URL, User & Credentials
+VCH Docker Host URL and certificates
+DNS Key and Server details for Dynamic host registration
+
+
+
+*********************************************************************************************************************************************
+ 
+
+zip -D deploymentProperties.zip ./*
+zip -r deploy.zip .  -x *.zip
+
+zip -r deploy.zip .  -x *.zip
+
+unzip myzip.zip
+
+tar xvf filename.tar
+
+Here is the command in case you want to extract in present directory
+
+unzip <source_file_path>.zip 
+if you want to extract to a particular destination folder, you can use
+
+unzip <sorce_file_path>.zip -d <destination_path>
+
+zip options expalined well
+https://www.geeksforgeeks.org/zip-command-in-linux-with-examples/
+
+zip -u stuff.jar file.txt
+
+
+jar -uf YOURJAR.jar FILE
+
+unzip tztdap.jar
+
+****************************************************************************************************************************************
+ 
+ docker login -u ibg.rpbs.regops01@vsphere.sgp.dbs.com -p 'rpbsP@$$W0rd' x18svicapp02a.dev.cloudnow.dbs.com
+ 
+ 
+ https://x18svicapp02a.dev.cloudnow.dbs.com:8282
+ 
+ 
+ docker ps -a
+ docker exec -it x01srpbsvicapp2a bash
+ cd /opt/eap
+ 
+ 
+ 
+1) how can we create multiple profiles -- one jboss and multiple profiles.      =>    one country - one container
+2) mount the file system. NFS server to VIC.... do we have any script ?         =>    start.sh file has the script and we need to have look on it.
+
+ 
+ AppRegistryCredID:RPBSTBMSViCUATCredentailsID
+
+CertsCredID:VIC1RPBSTBMSDockerHostCertsUAT
+			VIC2RPBSTBMSDockerHostCertsUAT
+
+ 
+ 
+ 
+ 
+*****************************************************************************************************************************************
+https://www.youtube.com/watch?v=zJ6WbK9zFpI
+
+https://docs.docker.com/engine/install/ubuntu/
+
+https://hub.docker.com
+
+commands
+
+Run - start a container
+ docker run nginx
+ps - list contianers
+ docker ps
+STOP stop a container
+
+ docker ps
+ docker stop <name>
+ docker ps -a
+ 
+RM remove a container
+ docker rm <name>
+ docker ps -a
+
+images - lists images
+ docker images
+
+rmi remove images
+	docker rmi nginx
+
+pull download an images
+
+	docker run nginx
+	docker pull nginx
+
+
+docker run ubuntu
+docker ps
+docker ps -a
+
+Exec - execute a commands
+docker ps -a
+
+docker exec <name>
+ 
+ docker container stop <container_id>
+ 
+ Please access the labs here: https://kodekloud.com/p/docker-labs
+*****************************************************************************************************************************************
+ 
+ 
+export DOCKER_API_VERSION=1.25
+export DOCKER_HOST=x18tcldvch02a.dev.cloudnow.dbs.com:2375
+
+
+
+unset DOCKER_API_VERSION
+unset DOCKER_HOST
+
+docker run -it x18svicapp02a.dev.cloudnow.dbs.com/ibg-ibgm-01/rhel-openjdk8:3
+
+
+
+
+-- to run the nexus image
+docker run -it --name=sjboss1 --net=host nexuscimgmt.sgp.dbs.com:8088/ibgm/sc_vic_ibgm/rhel-jboss71:8
+
+
+-- to run the vic image
+docker run -it -p 8080:8080 -p 8443:8443 -p 9990:9990 -p 9993:9993 --net=tsxcld01 --name=jbosstest1 x18svicapp02a.dev.cloudnow.dbs.com/library/jboss-eap-72:1.2-12.1580215318 /bin/bash
+
+
+-- to run the local images
+docker run x18svicapp01a.dev.cloudnow.dbs.com/library/jboss-eap-72:1.2-12.1580215318
+docker run -it -p 80:8080 -p 83:8443 -p 93:9993 -p 90:9990 --name=fprojboss1 --net=tsxcld01  x18svicapp02a.dev.cloudnow.dbs.com/ibg-fpro-01/jboss72:1.1 /bin/bash
+
+docker run -it -p 80:8080 -p 83:8443 -p 93:9993 -p 90:9990 --name=sjboss1 x18svicapp02a.dev.cloudnow.dbs.com/ibg-fpro-01/jboss72:1.1 /bin/bash
+
+
+-- copying files from and to container
+docker cp /home/gopikiran/working_container.xml rejboss1:/opt/eap/standalone/configuration/standalone.xml
+ docker cp /home/gopikiran/fproreapp.uat.dbs.com.jks rejboss1:/opt/eap
+
+x18svicapp02a.dev.cloudnow.dbs.com/ibg-fpro-01/jboss-eap-72:1.1
+
+
+-- to pull and push from the repo
+docker pull nexuscimgmt.sgp.dbs.com:8088/ibgm/sc_vic_ibgm/rhel-jboss72:8
+docker tag nexuscimgmt.sgp.dbs.com:8088/ibgm/sc_vic_ibgm/rhel-jboss72:8 x18svicapp02a.dev.cloudnow.dbs.com/ibg-fpro-01/jboss72:1.1
+docker push x18svicapp02a.dev.cloudnow.dbs.com/ibg-fpro-01/jboss72:1.1
+
+*****************************************************************************************************************************************
+My part
+
+https://confluence.sgp.dbs.com:8443/dcifcnfl/display/IIPAA/POC+Setup+OnBoarding
+
+ 
+-- to pull and push from the repo
+docker pull nexuscimgmt.sgp.dbs.com:8088/ibgm/sc_vic_ibgm/rhel-jboss72:8
+docker tag nexuscimgmt.sgp.dbs.com:8088/ibgm/sc_vic_ibgm/rhel-jboss72:8 x18svicapp02a.dev.cloudnow.dbs.com/ibg-fpro-01/jboss72:1.1
+docker push x18svicapp02a.dev.cloudnow.dbs.com/ibg-fpro-01/jboss72:1.1
+ 
+ 
+ Docker Endpoint	x18srpbsvch01a.dev.cloudnow.dbs.com:2376
+Certificates	Please find the attached
+Management URL	x18svicapp02a.dev.cloudnow.dbs.com:8282
+Registry Tag Information	docker tag SOURCE_IMAGE[:TAG] x18svicapp02a.dev.cloudnow.dbs.com /ibg-rpbs-01/IMAGE[:TAG]
+Management/Registry User Name	ibg.rpbs.regops01@vsphere.sgp.dbs.com
+Registry User Password	Password will be shared separately 
+
+Default Information for VIC	
+Base Disk	50GB for each cVM (thin provisioned)
+TLS Authentication	Enabled
+TLS Encryption	Enabled
+Image Vulnerability Scan Enabled	Yes
+Additional volume mounts	You may create as required, during docker run.
+Container Network and Range	DHCP
+	--net=ibgrpbs01
+Dynamic DNS Server	x18svicns01a.dev.cloudnow.dbs.com
+	(10.92.200.88) – Master
+	x18svicns02a.dev.cloudnow.dbs.com
+	(10.92.201.88) – Slave
+DNS Name Space	rpbs.ibg.dev.cloudnow.dbs.com
+DNS Key	DNS Key will be shared separately
+Developer self-docker build Info	NA for your project
+
+ 
+ 
+
+Docker Endpoint	x18srpbsvch02a.dev.cloudnow.dbs.com:2376
+Certificates	Please find the attached
+Management URL	x18svicapp02a.dev.cloudnow.dbs.com:8282
+Registry Tag Information	docker tag SOURCE_IMAGE[:TAG] x18svicapp02a.dev.cloudnow.dbs.com /ibg-rpbs-01/IMAGE[:TAG]
+Management/Registry User Name	ibg.rpbs.regops01@vsphere.sgp.dbs.com
+Registry User Password	Password will be shared separately
+	
+Default Information for VIC	
+Base Disk	50GB for each cVM (thin provisioned)
+TLS Authentication	Enabled
+TLS Encryption	Enabled
+Image Vulnerability Scan Enabled	Yes
+Additional volume mounts	You may create as required, during docker run.
+Container Network and Range	Static IP
+	--net=ibgrpbs01
+	IP Address range: 10.92.166.119-10.92.166.126
+Dynamic DNS Server	x18svicns01a.dev.cloudnow.dbs.com
+	(10.92.200.88) – Master
+	x18svicns02a.dev.cloudnow.dbs.com
+	(10.92.201.88) – Slave
+DNS Name Space	rpbs.ibg.dev.cloudnow.dbs.com
+DNS Key	DNS Key will be shared separately
+Developer self-docker build Info	NA for your project
+
+
+
+DOCKER_REG=x18srpbsvch02a.dev.cloudnow.dbs.com
+DOCKER_REG_USER=ibg.rpbs.regops01@vsphere.sgp.dbs.com
+DOCKER_REG_PASSWD="rpbsP@\$\$W0ef"
+DOCKER_PROJECT=ibg-rpbs-01
+docker images
+ 
+DOCKER_REG=x18svicapp02a.dev.cloudnow.dbs.com
+DOCKER_REG_USER=ibg.ibgm.regops01@vsphere.sgp.dbs.com
+DOCKER_REG_PASSWD="abcdP@\$\$W0ef"
+DOCKER_PROJECT=ibg-abcd-01
+docker images
+ 
+ 
+ 
+ docker pull nexuscimgmt.sgp.dbs.com:8088/ibgm/sc_vic_ibgm/rhel-openjdk8:8
+docker tag nexuscimgmt.sgp.dbs.com:8088/ibgm/sc_vic_ibgm/rhel-openjdk8:8 x18svicapp02a.dev.cloudnow.dbs.com/<app-name>/rhel-openjdk8:8
+docker login -u xxx.regops01@vsphere.sgp.dbs.com -p 'xxx' x18svicapp02a.dev.cloudnow.dbs.com
+docker push x18svicapp02a.dev.cloudnow.dbs.com/<app-name>/rhel-openjdk8:8
+
+
+ 
+zip -D deploymentProperties.zip ./*
+zip -r deploy.zip .  -x *.zip
+
+zip -r deploy.zip .  -x *.zip
+
+unzip myzip.zip
+
+tar xvf filename.tar
+
+Here is the command in case you want to extract in present directory
+
+unzip <source_file_path>.zip 
+if you want to extract to a particular destination folder, you can use
+
+unzip <sorce_file_path>.zip -d <destination_path>
+
+zip options expalined well
+https://www.geeksforgeeks.org/zip-command-in-linux-with-examples/
+
+zip -u stuff.jar file.txt
+
+
+jar -uf YOURJAR.jar FILE
+
+unzip tztdap.jar
+ 
+ https://x18svicapp02a.dev.cloudnow.dbs.com:8282
+ 
+Docker 
+docker pull x18svicapp02a.dev.cloudnow.dbs.com/library/jboss-eap-72:1.2-12.1580215318
+docker tag x18svicapp02a.dev.cloudnow.dbs.com/library/jboss-eap-72:1.2-12.1580215318 x18svicapp02a.dev.cloudnow.dbs.com/ibg-rpbs-01/jbosseap
+
+docker push x18svicapp02a.dev.cloudnow.dbs.com/ibg-rpbs-01/jbosseap
+
+
+docker 
+ 
+ 
+ 
+ 
+ docker login -u ibg.rpbs.regops01@vsphere.sgp.dbs.com -p 'rpbsP@$$W0rd' x18svicapp02a.dev.cloudnow.dbs.com
+
+ 
+ docker exec -it x01srpbsvicapp1a bash
+
+ 
+ 
+ x01srpbsvicapp1a
+ useradd -m krishnagganddu
+ passwd krishnagganddu
+ 
+ 
+ given krishnagganddu
+ 
+ 
+ 
+ 
+ useradd -m tbmsuser
+ passwd tbmsuser
+  tbmsuser
+ 
+ groupadd rpbsgrp
+ usermod -a -G rpbsgrp tbmsuser
+ id tbmsuser
+ groupadd tbmsgrp
+ usermod add -a -G tbmsgrp tbmsuser
+ it tbmsuser
+ 
+ usermod -g tbmsgrp tbmsuser
+ id tbmsuser
+ 
+ 
+ 
+ 
+https://10.92.159.183:8443/pricing-portal/control/main
+
+https://10.92.159.176:8443/pricing-portal/control/main
+ 
+ 
+ 
+Java installation
+ 
+ 
+ 
+ 
+export DOCKER_HOST=x18srpbsvch02a.dev.cloudnow.dbs.com:2376
+export DOCKER_TLS_VERIFY=1
+export DOCKER_CERT_PATH=/home/tbmsuser/x18srpbsvch02a
+ 
+2020P@$$W0rd
+ 
+ 
+ 
+bach: !: event not found
+ 
+ $ shopt -s extglob; set +H
+$ echo !(docs)
+file1 file2
+$ shopt -s extglob; set -H
+$ echo !(docs)
+file1 file2
+ 
+ shopt -s extglob; set +H
+cp -r ../ofbiz-jboss/!(vic|vic_poc|Jenkins|target) vic/deployments/rpbs/${COUNTRY}/
+
+  
+ADD --chown=jboss:jboss deployments/rpbs/srpbs-sg.uat.dbs.com_uat.jks /app/jboss/VIC_JVM_01/ssl
+ADD --chown=jboss:jboss deployments/rpbs/x01srpbspmap1a.vsi.uat.dbs.com_uat.keystore /app/jboss/VIC_JVM_01/vault/
+#ADD --chown=jboss:jboss deployments/rpbs/srpbs-sg.uat.dbs.com_prd.jks /app/jboss/VIC_JVM_01/ssl
+#ADD --chown=jboss:jboss deployments/rpbs/x01srpbspmap1a.vsi.uat.dbs.com_prd.keystore /app/jboss/VIC_JVM_01/vault/
+ADD --chown=jboss:jboss deployments/rpbs/*.sh /app/jboss/VIC_JVM_01/bin/
+ADD --chown=jboss:jboss deployments/rpbs/*.xml /app/jboss/VIC_JVM_01/configuration/
+
+ 
+LS0tLSBCRUdJTiBTU0gyIEVOQ1JZUFRFRCBQUklWQVRFIEtFWSAtLS0tClN1YmplY3Q6IHRibXN1c2VyCkNvbW1lbnQ6ICIyMDQ4LWJpdCByc2EsIHRibXN1c2VyQHgwMXNycGJzbmZzMWEudnNpLnVhdC5kYnMuY29tLCBUdWUgTWFcCnkgMDcgMjAxOSAxMzoyNzoyNSArMDgwMCIKUDIvNTZ3QUFBK3dBQUFBMWFXWXRiVzlrYm50emFXZHVlM0p6WVMxd2EyTnpNUzF6YUdFeGZTeGxibU55ZVhCMGUzSnpZUwoxd2EyTnpNUzF1YjI1bGZYMEFBQUFFYm05dVpRQUFBNThBQUFPYkFBQUFFUUVBQVFBQUIvMFVNWWpuUmRBQlZmR2NEdWhICmpBNUtoNCtEZmYxQ0E0NXdFdTdReklRalFkV2czeVo5bk1UYjQ2VnhsaFV2bzB6Z3RXZTdqd1E4cC9kSU4yU1pxNnNmS1EKOEVmYjBMVUdwdHQ0K0dzVktWYllwN1JpT2F2ZDhHYllGdGQzVThoYmc1VXdXdEZlQ2YzQ2JGVFR1bUpTTlV1M1lVVlRxWQpVbGlRTUh0Yk9MeU5qQlRkTzIycG5tZnNkeUFKYXR3K290WGFQNGpzdy8xQXRvNXJoeE9tcis3bWlXTGMyWDVIeDNkbktJCmphdDlkYXd3czFpWjByb2x3YndPY3dubnpLbUIrRXp6dTJTUStlMWkrcVVtVE5KYklCVlYwdjF2d3FFN1J1dkk2R2pISlMKNExkdTRDQTU2VXQvTHpXZU9rd3lBdVhVRitGWXZNSlpubzB6dWpHK1R3c3hBQUFJQUthMWp3L0d0RlhISE9rS1ArWFRWTgpqVWc5MEcrVDZCcnZMM3VZL2FQRlFhQlRiMW5KcXptcEcrbktyMmoyVzk0RXp6MzNYd1NlYlNLRmtYS2dtRmxJdGhtcUZjClU2OWM0YjFYM2dUVkVpR2plbE9UQjhpMXptRlBIWllvbjI3WnkwN3ZSNHVpbWNnanI3L2tLeUN0SjRRQUJyTnY4ajkyUS8KYXVpeE5lTERpVzhCMmtCdElkcFJPcytFSGw0OTYvck9VRERJOHdLcW43SlNyNGtFWWh0Rm95ZU9mTU9CUXdHVmg0V2twSQp4dHAxamhIMHR5bG9VcmdmNVJnVytVaG1xSXRIQ1ozT21UZGVJUWxwdDR5ckZhYU1JR0lIeWhicG5Yd2ZZQ3NCQTM5SXplCmNQcVV5aWlVbXZpUW5mNnA1am1CblFBaXBOQjc4NWtHU3BXU0pEWGMwQUFBUUFrMXczZzVrd3NoZTZZc1E1T3ZpWGNEMUkKNi9CWndQMEtxWE1XUVF5eWczYzNHZ1JibGZQZXVLQnZCMW9KVkJQMTRGYXBGS3F3Z2FuSWZxZEJmWE5Kd0w0OTBzT29FdApudDZHTjBNeDR3di9QTkxOUThSWTBNZ3ZJeFhzL3JuTFJwdW1vREVmQ1k5T2ZNdzVScEZqZzY0Y3gzdzFvR1RhRDBMZk5FCkxnOS90UFlBQUFRQXdvQUhYNVlmY1lQOEFNYWVsUk10KzBpYTVjUHdSbDZkV2NBWTR4VjM5YmtzaXpjSUg4eDRVQnNEZG4KMXBKQndnKzFOTVVua0tEZ1J6My9vcjR6YlRweUpxWjB2dGR0OU05ZXEvVU5WSlRPLy9yT3VUdy94VnoyYjVqNld6TnFBcgpLeHRYVHA5TzZPdUVrVnhiVkxnK3dUbEwxd2tSK0kxS0tSWnZvZFF1N2xrQUFBUUEyMnY1RkVOVHdQVFYwM1dTOEtYRm9TCkVzMDNDRjJsOGorRVdINERiQlZNYTJNdU1MalZDc3hIN2ZuU2N4azBiNzhOZHVETlp2bUFLNk1kd3cvSWFTaU1XNlNoS20KQ3Z2VUFwMjhrYWN4a1lrMldUVFN2RjN5akk2SGVBZHc5R0dDUllnb3E1NDc1UnJjSEpKSmlzZVdCTC84ejFEMFJicnRiUgpHbXJzSmJSSlU9Ci0tLS0gRU5EIFNTSDIgRU5DUllQVEVEIFBSSVZBVEUgS0VZIC0tLS0K
+ 
+ 
+ 
+Ap1a and Ap2a = Maxscale Client - srpbsmxs.uat.dbs.com:4405 = 10.91.138.149 / 10.91.138.146
+
+Ap1a and Ap2a + NFS1 + NFS2 = srpbsmxs.uat.dbs.com:4405 = 10.91.138.149 / 10.91.138.146
+Ap1a and Ap2a + NFS1 + NFS2 = srpbsmxs.uat.dbs.com:5505 = 10.91.197.192 / 10.91.197.194 <SG & AU>
+Ap1a and Ap2a + NFS1 + NFS2 = srpbsmxs.uat.dbs.com:6605 = 10.91.197.193 / 10.91.197.195 <STFA & IRS>
+
+1. DEP install Maxscale
+2. DEP replicate Maxscale client setup from ap1a into NFSX
+ 
+ 
+ 
+password for the new VIC zip file : 2020P@$$W0rd
+
+
+
+TODO
+
+1) Deploy multiple countries parallel -> able to deploy single country
+2) HAProxy creation  and SLB  - need to explore 
+3) Batch programes move to NFS server.
+4) Logging(vic to NFS server(/logs/jbosss/)
+5) 
+
+
+
+
+https://www.digitalocean.com/community/tutorials/an-introduction-to-haproxy-and-load-balancing-concepts
+
+**************************************************************************************************
+
+
+password for zip file :2020P@$$W0rd
+password for rpbsirs regops user:rpbsirsP@$$W0rd
+
+
+
+Registryname : ibg.rpbssg.regops01@vsphere.sgp.dbs.com
+PWD :rpbssgP@$$W0rd
+Registryname : ibg.rpbshk.regops01@vsphere.sgp.dbs.com
+PWD :rpbshkP@$$W0rd
+Registrname : ibg.rpbsirs.regops01@vsphere.sgp.dbs.com
+PWDrpbsirsP@$$W0rd
+
+**************************************************************************************************
+
+AppRegistryCredID
+
+•	RPBSTBMSViCSGUATCredentailsID
+•	RPBSTBMSViCHKUATCredentailsID
+•	RPBSIRSViCUATCredentailsID
+
+CertsCredID
+
+•	VIC1RPBSTBMSSGDockerHostCertsUAT
+•	VIC1RPBSTBMSHKDockerHostCertsUAT
+•	VIC1RPBSIRSDockerHostCertsUAT
+
+AppRegistryCredID:
+ 
+	RPBSTBMSViCUATCredentailsID
+
+CertsCredID:
+
+	VIC1RPBSTBMSDockerHostCertsUAT
+
+**************************************************************************************************
+RPBSAB-305 - SG
+RPBSAB-358 - Au
+
+RPBSAB-391 - SG  done
+RPBSAB-392 - AU  done
+RPBSAB-381 - HKB  done
+RPBSAB-382 - HKL  done
+
+RPBSAB-386 - VN  done
+RPBSAB-387 - TW  done
+RPBSAB-388 - IN  done
+
+
+
+RPBSAB-389 - KR
+RPBSAB-390 - CN
+
+
+
+********************************************************************************************************************************************************
+ARD
+
+we have three VCH's SG,HK,IRS,Multicountry(Regional) on UAT.
+
+TBMS
+sg --> sg,au      x18srpbssgvch01a.dev.cloudnow.dbs.com:2376
+hk --> hkl,hkb   x18srpbshkvch01a.dev.cloudnow.dbs.com:2376
+multicountry--> tw,vn,cn, kr, in,id.   x18srpbsvch01a.dev.cloudnow.dbs.com:2376
+
+IRS/STFA   x18srpbsirsvch01a.dev.cloudnow.dbs.com:2376
+
+REPLICAS:"2",  - container
+ MEMORY:"3G",
+ CPUS:"1",
+								
+
+ssl -> jks, keystore, standalone(db details).
+
+firewall  10.52
+
+RIT case
+20201440
+
+20200618
+
+VIC: 20201890
+
+
+ssh-keygen-g3 --key-format openssh2 --import-public-key  tbmsuser_x01srpbsnfs1a.pub tbmsuser_x01srpbsnfs1a_open.pub
+ssh-keygen-g3 --key-format openssh2 --import-private-key  tbmsuser_x01srpbsnfs1a tbmsuser_x01srpbsnfs1a_open
+
+
+
+*******************************************************************************************************************************************************
+
+
+
+ 
